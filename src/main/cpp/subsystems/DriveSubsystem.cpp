@@ -6,13 +6,18 @@
 
 DriveSubsystem::DriveSubsystem() {
   // Implementation of subsystem constructor goes here.
-  motor1PID.SetP(0.01);
+  samSmithPID.SetP(0.01);
 }
 
 void DriveSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
+
 }
 
 void DriveSubsystem::SimulationPeriodic() {
   // Implementation of subsystem simulation periodic method goes here.
+}
+
+void DriveSubsystem::Drive() {
+    samSmithPID.SetReference(m_xbox.GetRightTriggerAxis(), rev::ControlType::kVelocity );
 }

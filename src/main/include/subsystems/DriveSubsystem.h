@@ -4,23 +4,28 @@
 
 #pragma once
 
-#include <rev/SparkMaxPIDController.h>>
+#include <frc/Encoder.h>
 #include <rev/CANSparkMax.h>
+#include <rev/SparkMaxPIDController.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/XboxController.h>
+#include <frc/controller/PIDController.h>
 
 class DriveSubsystem : public frc2::SubsystemBase {
  public:
   DriveSubsystem();
+
+  void Drive();
 
   void Periodic() override;
 
   void SimulationPeriodic() override;
 
  private:
-  rev::CANSparkMax motor1{1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax samSmith{16, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
   
-  rev::SparkMaxPIDController motor1PID{motor1.GetPIDController()};
-  
+  rev::SparkMaxPIDController samSmithPID{samSmith.GetPIDController()};
+
+  frc::XboxController m_xbox{0};
 };
